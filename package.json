@@ -1,0 +1,28 @@
+{
+  "name": "recipesfordisaster",
+  "version": "0.0.1",
+  "description": "quick and easy recipes website",
+  "main": "qerd-server.js",
+  "scripts": {
+    "test": "nodeunit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasrstorey/recipesfordisaster.git"
+  },
+  "keywords": [
+    "art"
+  ],
+  "author": "Thomas R Storey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thomasrstorey/recipesfordisaster/issues"
+  },
+  "homepage": "https://github.com/thomasrstorey/recipesfordisaster#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "skeleton-css": "^2.0.4"
+  }
+}
