@@ -4,7 +4,7 @@ module.exports = function(app){
     res.json({
       objURL: "http://quick-and-easy.recipes/models/avocado.obj",
       mtlURL: "http://quick-and-easy.recipes/models/avocado.mtl",
-      texURL: "http://quick-and-easy.recipes/models/avocado.jpg",
+      texURL: "http://quick-and-easy.recipes/models/avocado.sgi",
       name: "avocado"});
   });
 
