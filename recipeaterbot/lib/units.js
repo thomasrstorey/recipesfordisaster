@@ -1,0 +1,22 @@
+module.exports = [
+  {full : "teaspoon", abb: "tsp"},
+  {full : "tablespoon", abb: "tbsp"},
+  {full : "fluid ounce", abb: "fl oz"},
+  {full : "cup", abb: "c"},
+  {full : "gill", abb: "gill"},
+  {full : "pint", abb: "pt"},
+  {full : "quart", abb: "qt"},
+  {full : "gallon", abb: "gal"},
+  {full : "milliliter", abb: "ml"},
+  {full : "liter", abb: "l"},
+  {full : "deciliter", abb: "dl"},
+  {full : "pound", abb: "lb"},
+  {full : "ounce", abb: "oz"},
+  {full : "milligram", abb: "mg"},
+  {full : "gram", abb: "g"},
+  {full : "kilogram", abb: "kg"},
+  {full : "millimeter", abb: "mm"},
+  {full : "centimeter", abb: "cm"},
+  {full : "meter", abb: "m"},
+  {full : "inch", abb: "in"}
+];

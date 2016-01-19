@@ -1,0 +1,43 @@
+{
+  "name": "recipeaterbot",
+  "description": "automatically generate impossible recipes",
+  "version": "0.1.0",
+  "homepage": "https://github.com/thomasrstorey/recipeater",
+  "author": {
+    "name": "Thomas R Storey",
+    "email": "storey.thomas@gmail.com",
+    "url": "thomaasrstorey.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thomasrstorey/recipeater.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thomasrstorey/recipeater/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/thomasrstorey/recipeater/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/recipeaterbot",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.5"
+  },
+  "keywords": [],
+  "dependencies": {
+    "jsonfile": "^2.2.3",
+    "lodash": "^3.10.1",
+    "probability-distributions": "^0.6.0"
+  }
+}
