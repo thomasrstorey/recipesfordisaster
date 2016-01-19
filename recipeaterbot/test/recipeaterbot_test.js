@@ -30,13 +30,14 @@ exports['awesome'] = {
   'no args': function(test) {
     test.expect(1);
     // tests here
-    var ings = recipeaterbot.generateIngredientsList();
-    // console.dir(ings);
-    console.log(recipeaterbot.generateStepsList().title);
+    var recipe = recipeaterbot.generateRecipe();
+
+    console.log(recipe.title);
     console.log(recipeaterbot.writeIngredientList());
-    console.log(recipeaterbot.generateStepsList().steps);
-    console.dir(recipeaterbot.generateStepsList().data, {depth:null});
-    test.equal(typeof ings, 'object', 'should generate an array.');
+    console.log(recipe.steps);
+    console.log(recipe.ingredients);
+    console.dir(recipe.data, {depth:null});
+    test.equal(typeof recipe, 'object', 'should generate an array.');
     test.done();
   },
 };

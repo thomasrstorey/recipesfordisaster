@@ -28,7 +28,6 @@ function Recipeater () {
   self.generateIngredientsList = function () {
     var numings = Math.ceil(_.sample(pd.rexp(150, 0.1)))+3;
     for(var i = 0; i != numings; i++) {
-      // console.log("30");
       self.Kitchen.ingredients.push(getIngredient());
     }
     return self.Kitchen.ingredients;
@@ -43,8 +42,14 @@ function Recipeater () {
     }
     steps += "Serve " + _.sample(adjs) + ".";
     var title = generateTitle(data);
-    var recipe = {title: title, steps : steps, data : data};
+    var recipe = { title: title, steps : steps, 
+              ingredients: self.Kitchen.ingredients, data : data};
     return recipe;
+  };
+
+  self.generateRecipe = function () {
+    self.generateIngredientsList();
+    return self.generateStepsList();
   };
 
   var generateTitle = function (recipeObj) {
