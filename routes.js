@@ -1,6 +1,7 @@
 module.exports = function(app){
 
   var recipeater = require("./recipeaterbot/recipeaterbot.js");
+  var kitchen = require("./kitchen/kitchen.js");
   var fs = require('fs');
 
   app.get('/api/order', function (req, res) {
@@ -41,5 +42,6 @@ module.exports = function(app){
     recipes.push({ingredients: recipe.ingredients,
               steps:recipe.steps, images:images});
     fs.writeFileSync('./recipes.json', JSON.stringify(recipes, null, 2));
+    //TODO: Trigger page update (sockets)
   }
 };
