@@ -2,6 +2,9 @@ import bpy
 import numpy as np
 import os
 import bmesh
+from math import *
+from mathutils import *
+import random
 
 def createMesh(name, origin, verts, faces):
     mesh = bpy.data.meshes.new(name+"Mesh")
@@ -35,7 +38,9 @@ def execute(inputs, outputs):
         # dimensions of cells
         (cl, cw, ch) = (l/div, w/div, h/div)
         # position of first cell
-        cpos = (obj.bound_box[0][0]+cl*0.5, obj.bound_box[0][1]+cw*0.5, obj.bound_box[0][2]+ch*0.5)
+        cpos = (obj.bound_box[0][0]+cl*0.5,
+             obj.bound_box[0][1]+cw*0.5,
+             obj.bound_box[0][2]+ch*0.5)
         # cell faces
         faces = ((0,3,2,1),(0,1,5,4),(1,2,6,5),
               (3,7,6,2),(0,4,7,3),(4,5,6,7))
@@ -57,6 +62,20 @@ def execute(inputs, outputs):
                     cells.append(createMesh("cell", origin, verts, faces))
         # for each cell, make a duplicate of the object
         dups = []
+
+        dup = obj.copy()
+        dup.data = obj.data.copy()
+        scn.objects.link(dup)
+        # add a boolean intersection modifier
+        mod = dup.modifiers.new('intersection', 'BOOLEAN')
+        mod.object = cells[0]
+        mod.operation = 'INTERSECT'
+        # apply modifier
+        dup.data = dup.to_mesh(scn, True, 'RENDER')
+        scn.update()
+        dup.modifiers.remove(mod)
+        deleteObject(dup)
+
         for cell in cells:
             dup = obj.copy()
             dup.data = obj.data.copy()
@@ -75,8 +94,10 @@ def execute(inputs, outputs):
                 deleteObject(dup)
             # delete cells
             deleteObject(cell)
+            set_uvs(dup.data)
+
         # add a plane under the cells
-        po = (obj.bound_box[0][0]+(l*0.5), obj.bound_box[0][1]+(w*0.5), obj.bound_box[0][2]-5)
+        po = (obj.bound_box[0][0]+(l*0.5), obj.bound_box[0][1]+(w*0.5), obj.bound_box[0][2]-1)
         pv = ((l*10,l*10,1),(l*10,l*-10,1),(l*-10,l*-10,1),(l*-10,l*10,1),
             (l*10,l*10,-1),(l*10,l*-10,-1),(l*-10,l*-10,-1),(l*-10,l*10,-1))
         plane = createMesh("plane",po,pv,faces)
@@ -93,17 +114,70 @@ def execute(inputs, outputs):
         scn.update()
         bpy.ops.object.select_all(action='DESELECT')
         plane.select = True
+        bpy.context.scene.objects.active = plane
         bpy.ops.rigidbody.object_add(type='ACTIVE')
-        plane.select = False
         plane.rigid_body.enabled = False
         plane.rigid_body.kinematic = True
         plane.rigid_body.friction = 0.750
-        # for each cell, add a 'Dynamic' rigidbody
-        for cell in cells:
-            bpy.ops.rigidbody.object_add(cell)
-        # export duplicates as obj group
+        plane.select = False
+        # # for each cell, add a 'Dynamic' rigidbody
+        for dup in dups:
+            dup.select = True;
+            bpy.context.scene.objects.active = dup
+            bpy.ops.object.origin_set(type="ORIGIN_GEOMETRY")
+            scn.rigidbody_world.group.objects.link(dup)
+            bpy.ops.rigidbody.object_add(type='ACTIVE')
+            dup.rigid_body.friction = 0.950
+            dup.select = False;
+
+        # # bake simulation and apply result
+        bpy.ops.ptcache.bake_all(bake=True)
+        scn.frame_current = scn.frame_end
+        scn.frame_set(scn.frame_end)
+        # # group dups together into one object
+        bpy.ops.object.select_all(action='DESELECT')
+        for dup in dups:
+            dup.select = True;
+        scn.objects.active = dups[0]
+        bpy.ops.object.join()
+        # # export duplicates as obj group
         outpath = os.path.join(objdir, outname)
-        bpy.ops.export_scene.obj(filepath=outpath,check_existing=False)
+        bpy.ops.export_scene.obj(filepath=outpath,check_existing=False,use_selection=True)
+
+def set_uvs_for_face(bm, fi, uv_layer):
+    face = bm.faces[fi]
+    zv = Vector((0.0, 0.0))
+    normal = face.normal
+    dx=abs(normal[0])
+    dy=abs(normal[1])
+    dz=abs(normal[2])
+
+    if (dz > dx):
+        u = Vector([1,0,0])
+        if (dz>dy):
+            v = Vector([0,1,0])
+        else:
+            v = Vector([0,0,1])
+    else:
+        v = Vector([0,0,1])
+        if dx>dy:
+            u = Vector([0,1,0])
+        else:
+            u = Vector([1,0,0])
+    for i in range(len(face.loops)):
+        if(face.loops[i][uv_layer].uv == zv):
+            l = face.loops[i]
+            l[uv_layer].uv = [ u.dot(l.vert.co),v.dot(l.vert.co)]
+
+def set_uvs(mesh):
+    uv = mesh.uv_textures[0]
+    bm = bmesh.new()
+    bm.from_mesh(mesh)
+    bm.faces.ensure_lookup_table()
+    uv_layer = bm.loops.layers.uv[uv.name]
+    for fi in range(len(bm.faces)):
+        set_uvs_for_face(bm, fi, uv_layer)
+    bm.to_mesh(mesh)
 
 def main():
     import sys
