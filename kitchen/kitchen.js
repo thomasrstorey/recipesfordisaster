@@ -4,6 +4,16 @@
  *
  * Copyright (c) 2016 Thomas R Storey
  * Licensed under the MIT license.
+
+
+ the key question here is, what is the output of each script?
+ editing and saving in-place means duplication in the case of
+ scripts that combine ingredients.
+ perhaps, don't make an obj until the end? consequtively edit a blend file.
+ so for instance chop will take all the input objs, chop them one at a time,
+ 
+
+
  */
 
 module.exports = function () {

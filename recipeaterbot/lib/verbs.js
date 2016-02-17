@@ -11,7 +11,7 @@ module.exports = [
     { present : "lower", past : "lowered"},
     { present : "place", past : "placed"},
     { present : "pour", past : "poured"},
-    { present : "put", past : "puted"},
+    { present : "put", past : "put"},
     { present : "remove", past : "removed"},
     { present : "roll out", past : "rolled out"},
     { present : "scoop", past : "scooped"},
