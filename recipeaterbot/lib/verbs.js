@@ -4,18 +4,17 @@ a list of verbs used in recipes
 sources: Julia Child.
 */
 module.exports = [
-    { present : "add", past : "added"},
-    { present : "adjust", past : "adjusted"},
-    { present : "arrange", past : "arranged"},
-    { present : "discard", past : "discarded"},
+    { present : "add", past : "added"}, //x
+    { present : "adjust", past : "adjusted"}, //x
+    { present : "arrange", past : "arranged"}, //x
+    { present : "discard", past : "discarded"}, //x
     { present : "lower", past : "lowered"},
     { present : "place", past : "placed"},
     { present : "pour", past : "poured"},
     { present : "put", past : "put"},
-    { present : "remove", past : "removed"},
+    { present : "remove", past : "removed"}, //x
     { present : "roll out", past : "rolled out"},
     { present : "scoop", past : "scooped"},
-    { present : "serve", past : "served"},
     { present : "set", past : "set"},
     { present : "spoon", past : "spooned"},
     { present : "spread", past : "spread"},
@@ -46,7 +45,6 @@ module.exports = [
     { present : "turn", past : "turned"},
     { present : "twist", past : "twisted"},
     { present : "wrap", past : "wrapped"},
-
     { present : "bake", past : "baked"},
     { present : "baste", past : "basted"},
     { present : "batter", past : "battered"},
@@ -61,7 +59,7 @@ module.exports = [
     { present : "burn", past : "burned"},
     { present : "carve", past : "carved"},
     { present : "chill", past : "chilled"},
-    { present : "chop", past : "chopped"},
+    { present : "chop", past : "chopped"}, //x
     { present : "clarify", past : "clarified"},
     { present : "crack", past : "cracked"},
     { present : "cook", past : "cooked"},
