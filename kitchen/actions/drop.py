@@ -1,7 +1,7 @@
 '''
-melt.py
+drop.py
 
-Takes a list of input ingredient names. Melts each ingredient, and adds the
+Takes a list of input ingredient names. Chops each ingredient, and adds the
 resulting model to the current blend or a new blend
 
 Thomas Storey
@@ -43,39 +43,26 @@ def addPlate(obj):
     plate.location = po
     return plate
 
-def addSoftbodyMod(scn, obj):
+def addRigidbody(scn, obj, e, k, f, cs):
     bpy.ops.object.select_all(action='DESELECT')
     obj.select = True
     scn.objects.active = obj
-    bpy.ops.object.modifier_add(type='SOFT_BODY')
-    obj.modifiers["Softbody"].settings.use_goal = False
-    obj.modifiers["Softbody"].settings.use_self_collision = True
-    obj.modifiers["Softbody"].settings.ball_size = 0.600
-    obj.modifiers["Softbody"].settings.ball_stiff = 1.00
-    obj.modifiers["Softbody"].settings.ball_damp = 0.800
+    bpy.ops.rigidbody.object_add(type='ACTIVE')
+    obj.rigid_body.enabled = e
+    obj.rigid_body.kinematic = k
+    obj.rigid_body.friction = f
+    obj.rigid_body.collision_shape = cs
+    obj.rigid_body.collision_margin = 0.200
+    if cs == 'MESH':
+        obj.rigid_body.mesh_source = 'BASE'
     obj.select = False
 
-def addClothMod(scn, obj):
+def removeRigidbody(scn, obj):
     bpy.ops.object.select_all(action='DESELECT')
     obj.select = True
     scn.objects.active = obj
-    bpy.ops.object.modifier_add(type='CLOTH')
-    obj.modifiers["Cloth"].point_cache.frame_end = 30
-    obj.select = False
-
-def removeMod(scn, obj):
-    bpy.ops.object.select_all(action='DESELECT')
-    obj.select = True
-    scn.objects.active = obj
-    bpy.ops.object.convert(target='MESH')
-    obj.select = False
-
-def addCollision(scn, obj):
-    bpy.ops.object.select_all(action='DESELECT')
-    obj.select = True
-    scn.objects.active = obj
-    bpy.ops.object.modifier_add(type='COLLISION')
-    obj.collision.thickness_inner = 0.100
+    bpy.ops.object.visual_transform_apply()
+    bpy.ops.rigidbody.object_remove()
     obj.select = False
 
 def setOriginToGeometry(scn, obj):
@@ -84,6 +71,23 @@ def setOriginToGeometry(scn, obj):
     bpy.ops.object.origin_set(type="ORIGIN_GEOMETRY")
     obj.select = False;
 
+def joinObjects(scn, objs, name):
+    bpy.ops.object.select_all(action='DESELECT')
+    for obj in objs:
+        obj.select = True;
+    activeobj = objs[0]
+    scn.objects.active = activeobj
+    bpy.ops.object.join()
+    activeobj.name = name
+    activeobj.data.name = name
+    return activeobj
+
+def indexOfSubstring(the_list, substring):
+    for i, s in enumerate(the_list):
+        if substring in s:
+              return i
+    return -1
+
 def getObjectsBySubstring(objname):
     copies = []
     for obj in bpy.data.objects:
@@ -91,32 +95,50 @@ def getObjectsBySubstring(objname):
             copies.append(obj)
     return copies
 
+def translateObjectZ(obj):
+    # define the translation
+    loc_mat = Matrix.Translation((1.0,1.0,2.0))
+    # decompose world_matrix's components, and from them assemble 4x4 matrices
+    orig_loc, orig_rot, orig_scale = obj.matrix_world.decompose()
+    orig_loc_mat = Matrix.Translation(orig_loc)
+    orig_rot_mat = orig_rot.to_matrix().to_4x4()
+    xscale = Matrix.Scale(orig_scale[0],4,(1,0,0))
+    yscale = Matrix.Scale(orig_scale[1],4,(0,1,0))
+    zscale = Matrix.Scale(orig_scale[2],4,(0,0,1))
+    orig_scale_mat = xscale * yscale * zscale
+    # assemble the new matrix
+    obj.matrix_world = loc_mat * orig_rot_mat * orig_scale_mat
+
 def execute(inputs, output):
     ctx = bpy.context
     scn = ctx.scene
     cwd = os.getcwd()
     objdir = os.path.join(cwd, 'objs')
     for objname in inputs:
-        print("melting " + objname)
         # import file, or get it if it's already here
         obj = getObject(objdir, objname)
+        translateObjectZ(obj)
         # add a plane under the cells
         plane = addPlate(obj)
         # ensure we are at the beginning of the timeline
         scn.frame_current = scn.frame_start
         scn.frame_set(scn.frame_start)
-        # add collision to plane
-        addCollision(scn, plane)
-        # add softbody to object
-
-        addClothMod(scn, obj)
+        # add 'Animated' rigidbody to plane
+        try:
+            bpy.ops.rigidbody.world_add()
+        except RuntimeError:
+            pass
+        scn.rigidbody_world.group = bpy.data.groups.new("rigidbodies")
+        addRigidbody(scn, plane, False, True, 0.150, 'MESH')
+        scn.update()
+        setOriginToGeometry(scn, obj)
+        addRigidbody(scn, obj, True, False, 0.150, 'CONVEX_HULL')
         # # bake simulation and apply result
         bpy.ops.ptcache.free_bake_all()
         bpy.ops.ptcache.bake_all(bake=True)
         scn.frame_current = scn.frame_end
         scn.frame_set(scn.frame_end)
-        removeMod(scn, obj)
-        setOriginToGeometry(scn, obj)
+        removeRigidbody(scn, obj)
         obj.location = Vector([0,0,0])
         # clean up - delete ground plane
         deleteObject(plane)
@@ -157,7 +179,7 @@ def main():
 
     inputs = args.input.split(",")
     execute(inputs, output)
-    print("melted " + ", ".join(inputs))
+    print("dropped " + ", ".join(inputs))
 
 if __name__ == "__main__":
     main()

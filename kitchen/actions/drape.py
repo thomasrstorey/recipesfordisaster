@@ -1,5 +1,5 @@
 '''
-melt.py
+drape.py
 
 Takes a list of input ingredient names. Melts each ingredient, and adds the
 resulting model to the current blend or a new blend
@@ -97,7 +97,7 @@ def execute(inputs, output):
     cwd = os.getcwd()
     objdir = os.path.join(cwd, 'objs')
     for objname in inputs:
-        print("melting " + objname)
+        print("draping " + objname)
         # import file, or get it if it's already here
         obj = getObject(objdir, objname)
         # add a plane under the cells
@@ -157,7 +157,7 @@ def main():
 
     inputs = args.input.split(",")
     execute(inputs, output)
-    print("melted " + ", ".join(inputs))
+    print("draped " + ", ".join(inputs))
 
 if __name__ == "__main__":
     main()

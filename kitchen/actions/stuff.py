@@ -30,37 +30,12 @@ def getObject(objdir, objname):
         bpy.ops.import_scene.obj(filepath=objpath,axis_forward='Y',axis_up='Z')
     return bpy.data.objects[objname]
 
-def addPlate(obj):
-    cwd = os.getcwd()
-    objdir = os.path.join(cwd, 'objs')
-    objpath = os.path.join(objdir, "plate.obj")
-    (l, w, h) = (obj.dimensions.x, obj.dimensions.y, obj.dimensions.z)
-    po = (obj.bound_box[0][0]+(l*0.5),
-        obj.bound_box[0][1]+(w*0.5),
-        obj.bound_box[0][2]-1)
-    bpy.ops.import_scene.obj(filepath=objpath,axis_forward='Z',axis_up='Y')
-    plate = getObjectsBySubstring("Plate")[0]
-    plate.location = po
-    return plate
-
-def addSoftbodyMod(scn, obj):
+def addDisplaceMod(scn, obj):
     bpy.ops.object.select_all(action='DESELECT')
     obj.select = True
     scn.objects.active = obj
-    bpy.ops.object.modifier_add(type='SOFT_BODY')
-    obj.modifiers["Softbody"].settings.use_goal = False
-    obj.modifiers["Softbody"].settings.use_self_collision = True
-    obj.modifiers["Softbody"].settings.ball_size = 0.600
-    obj.modifiers["Softbody"].settings.ball_stiff = 1.00
-    obj.modifiers["Softbody"].settings.ball_damp = 0.800
-    obj.select = False
-
-def addClothMod(scn, obj):
-    bpy.ops.object.select_all(action='DESELECT')
-    obj.select = True
-    scn.objects.active = obj
-    bpy.ops.object.modifier_add(type='CLOTH')
-    obj.modifiers["Cloth"].point_cache.frame_end = 30
+    bpy.ops.object.modifier_add(type='DISPLACE')
+    obj.modifiers["Displace"].mid_level = 0.9+(random.random()-0.5)*0.1
     obj.select = False
 
 def removeMod(scn, obj):
@@ -97,30 +72,13 @@ def execute(inputs, output):
     cwd = os.getcwd()
     objdir = os.path.join(cwd, 'objs')
     for objname in inputs:
-        print("melting " + objname)
         # import file, or get it if it's already here
         obj = getObject(objdir, objname)
-        # add a plane under the cells
-        plane = addPlate(obj)
-        # ensure we are at the beginning of the timeline
-        scn.frame_current = scn.frame_start
-        scn.frame_set(scn.frame_start)
-        # add collision to plane
-        addCollision(scn, plane)
-        # add softbody to object
 
-        addClothMod(scn, obj)
-        # # bake simulation and apply result
-        bpy.ops.ptcache.free_bake_all()
-        bpy.ops.ptcache.bake_all(bake=True)
-        scn.frame_current = scn.frame_end
-        scn.frame_set(scn.frame_end)
+        addDisplaceMod(scn, obj)
         removeMod(scn, obj)
         setOriginToGeometry(scn, obj)
-        obj.location = Vector([0,0,0])
-        # clean up - delete ground plane
-        deleteObject(plane)
-
+        obj.location = (0.0,0.0,0.0)
     # save out .blend
     if not output == None:
         bpy.ops.wm.save_as_mainfile(filepath=output,
@@ -156,8 +114,9 @@ def main():
         output = args.output+".blend"
 
     inputs = args.input.split(",")
+    print("stuffing " + ", ".join(inputs))
     execute(inputs, output)
-    print("melted " + ", ".join(inputs))
+    print("stuffed " + ", ".join(inputs))
 
 if __name__ == "__main__":
     main()
