@@ -102,9 +102,116 @@ def export(scn, obj, img, title, opath):
     img.save_render(opath+img.name+".jpg", scn)
     img.filepath = opath+img.name+".jpg"
     img.source = "FILE"
-    # bpy.ops.image.save_as(filepath=opath+img.name+".jpg",check_existing=False)
     # export obj and mtl
     bpy.ops.export_scene.obj(filepath=opath+title+".obj",check_existing=False)
+
+def createRenderCam(obj):
+    cam = bpy.data.cameras.new("cam")
+    cam_ob = bpy.data.objects.new("Cam", cam)
+    bpy.context.scene.objects.link(cam_ob)
+    # setup camera
+    tt = cam_ob.constraints.new("TRACK_TO")
+    tt.target = obj
+    tt.track_axis = "TRACK_NEGATIVE_Z"
+    tt.up_axis = "UP_Y"
+
+    cam.dof_object = obj
+    cam.cycles.aperture_type = "FSTOP"
+    cam.cycles.aperture_fstop = 0.3
+    cam_ob.location = ((random.random()-0.5)*16,
+                (random.random()-0.5)*16,
+                (random.random())*8)
+    return cam_ob
+
+def createPlate(obj):
+    objdir = os.path.join(os.getcwd(), "objs")
+    objpath = os.path.join(objdir, "renderPlate.obj")
+    bpy.ops.import_scene.obj(filepath=objpath,axis_forward='Y',axis_up='Z')
+    plate = bpy.data.objects.get("renderPlate")
+    plate.location = (0.0,0.0,obj.dimensions.y*-0.5)
+    plate_mat = plate.material_slots[0].material
+    plate_mat.use_nodes = True
+    plate_tree = plate_mat.node_tree
+    plate_links = plate_tree.links
+    plate_tree.nodes.clear()
+
+    out = plate_tree.nodes.new("ShaderNodeOutputMaterial")
+    add = plate_tree.nodes.new("ShaderNodeAddShader")
+    mix = plate_tree.nodes.new("ShaderNodeMixShader")
+    glossy = plate_tree.nodes.new("ShaderNodeBsdfGlossy")
+    white = plate_tree.nodes.new("ShaderNodeBsdfDiffuse")
+    black = plate_tree.nodes.new("ShaderNodeBsdfDiffuse")
+    lw = plate_tree.nodes.new("ShaderNodeLayerWeight")
+
+    plate_links.new(add.outputs[0], out.inputs[0])
+    plate_links.new(mix.outputs[0], add.inputs[0])
+    plate_links.new(glossy.outputs[0], add.inputs[1])
+    plate_links.new(lw.outputs[1], mix.inputs[0])
+    plate_links.new(white.outputs[0], mix.inputs[1])
+    plate_links.new(black.outputs[0], mix.inputs[2])
+
+    glossy.distribution = "BECKMANN"
+    glossy.inputs[0].default_value = (0.3,0.3,0.3,1.0)
+    glossy.inputs[1].default_value = 0.2
+
+    lw.inputs[0].default_value = 0.1
+
+    black.inputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
+
+def render(scn, obj, title, ipath):
+    cwd = os.getcwd()
+    # setup ibl
+    scn.render.engine = 'CYCLES'
+    scn.cycles.samples = 100
+    # convert object materials to cycles materials...
+    for mat_slot in obj.material_slots:
+        if mat_slot != None:
+            mat_slot.material.use_nodes = True
+            mat_tree = mat_slot.material.node_tree
+            mat_links = mat_tree.links
+            diffNode = mat_tree.nodes["Diffuse BSDF"]
+            texImgNode = mat_tree.nodes.new("ShaderNodeTexImage")
+            texImgNode.image = bpy.data.images[title+"_color"]
+            mat_links.new(texImgNode.outputs[0], diffNode.inputs[0])
+    # setup world
+    world = bpy.data.worlds["World"]
+    world.use_nodes = True
+    tree = world.node_tree
+    links = tree.links
+    bg = tree.nodes['Background']
+    bg.inputs[1].default_value = 2.0
+
+    bpy.ops.image.open(filepath=cwd+"/kitchen_envtex.hdr")
+    envTexImg = bpy.data.images["kitchen_envtex.hdr"]
+
+    envTex = tree.nodes.new('ShaderNodeTexEnvironment')
+    envTex.image = envTexImg
+    links.new(envTex.outputs[0], bg.inputs[0])
+
+    mapping = tree.nodes.new("ShaderNodeMapping")
+    mapping.vector_type = "TEXTURE"
+    links.new(mapping.outputs[0], envTex.inputs[0])
+
+    gen = tree.nodes.new("ShaderNodeTexCoord")
+    links.new(gen.outputs[0], mapping.inputs[0])
+
+    #setup plate
+    createPlate(obj)
+
+    # create cameras
+    cam_ob = createRenderCam(obj)
+    scn.camera = cam_ob
+    # render three images
+    scn.render.resolution_x = 1440
+    scn.render.resolution_y = 1080
+    scn.render.resolution_percentage = 100
+    for fn in range(1,4):
+        fp = ipath+title+str(fn)
+        scn.render.filepath = fp
+        bpy.ops.render.render(write_still=True)
+        cam_ob.location = ((random.random()-0.5)*(2*fn),
+                    (random.random()-0.5)*(2*fn),
+                    (random.random())*8)
 
 def execute(title, ipath, opath):
     ctx = bpy.context
@@ -114,7 +221,7 @@ def execute(title, ipath, opath):
     uvUnwrap(scn, obj)
     img = bakeTexture(scn, obj, title)
     export(scn, obj, img, title, opath)
-    # render(scn, obj, title, ipath)
+    render(scn, obj, title, ipath)
 
 def main():
     argv = sys.argv
