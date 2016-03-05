@@ -1,0 +1,22 @@
+# Blender MTL File: 'dish96c5293153e9607f00427bd3d6bb2946.blend'
+# Material Count: 2
+
+newmtl material_0
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Trimmed_Avocado_color.jpg
+
+newmtl material_0.002
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Trimmed_Avocado_color.jpg

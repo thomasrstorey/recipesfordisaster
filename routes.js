@@ -1,7 +1,7 @@
 module.exports = function(app){
 
-  var recipeater = require("./recipeaterbot/recipeaterbot.js");
-  var kitchen = require("./kitchen/kitchen.js");
+  var recipeater = require("./recipeaterbot/lib/recipeaterbot.js");
+  var kitchen = require("./kitchen.js");
   var fs = require('fs');
 
   app.get('/api/order', function (req, res) {
@@ -17,12 +17,12 @@ module.exports = function(app){
       kitchen.execute(recipe, function(err, urls){
         if(err){
           console.error(err);
-          res.json({error: true, message: err.message})
+          res.json({error: true, message: err.message});
         }
         //write recipe to file
-        writeRecipeToFile(recipe, urls.images);
+        writeRecipeToFile(recipe);
         //send urls to app
-        res.json(urls.model);
+        res.json(urls);
       });
   });
 
@@ -37,10 +37,14 @@ module.exports = function(app){
     res.render('home');
   });
 
-  var writeRecipeToFile = function (recipe, images) {
+  var writeRecipeToFile = function (recipe) {
     var recipes = JSON.parse(fs.readFileSync('recipes.json'));
+    var imgp = '/images/';
     recipes.push({ingredients: recipe.ingredients,
-              steps:recipe.steps, images:images});
+              steps:recipe.steps, images:[
+              imgp+recipe.title.replace(/ /g, '_')+'1.jpg',
+              imgp+recipe.title.replace(/ /g, '_')+'2.jpg',
+              imgp+recipe.title.replace(/ /g, '_')+'3.jpg']});
     fs.writeFileSync('./recipes.json', JSON.stringify(recipes, null, 2));
     //TODO: Trigger page update (sockets)
   }

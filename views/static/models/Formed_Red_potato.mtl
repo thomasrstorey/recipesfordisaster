@@ -1,0 +1,32 @@
+# Blender MTL File: 'dish440313603959b0ffaca5358adc67d6fb.blend'
+# Material Count: 3
+
+newmtl Material_onion_color
+Ns 86.274510
+Ka 0.000000 0.000000 0.000000
+Kd 0.327680 0.327680 0.327680
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Formed_Red_potato_color.jpg
+
+newmtl Material_onion_color_onion_color.jpg.001
+Ns 86.274510
+Ka 0.000000 0.000000 0.000000
+Kd 0.327680 0.327680 0.327680
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Formed_Red_potato_color.jpg
+
+newmtl material_0.007
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.409600 0.409600 0.409600
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Formed_Red_potato_color.jpg

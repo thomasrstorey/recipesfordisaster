@@ -26,7 +26,7 @@ function Recipeater () {
   };
 
   self.generateIngredientsList = function () {
-    var numings = Math.ceil(_.sample(pd.rexp(150, 0.1)))+3;
+    var numings = Math.ceil(_.sample(pd.rexp(150, 0.5)))+3;
     for(var i = 0; i != numings; i++) {
       self.Kitchen.ingredients.push(getIngredient());
     }
@@ -34,7 +34,7 @@ function Recipeater () {
   };
 
   self.generateStepsList = function () {
-    var numsteps = Math.ceil(_.sample(pd.rexp(150, 0.1)))+3;
+    var numsteps = Math.ceil(_.sample(pd.rexp(150, 0.5)))+3;
     var steps = '';
     var data = [];
     for (var i = 0; i != numsteps; i++){
@@ -42,7 +42,7 @@ function Recipeater () {
     }
     steps += "Serve " + _.sample(adjs) + ".";
     var title = generateTitle(data);
-    var recipe = { title: title, steps : steps, 
+    var recipe = { title: title, steps : steps,
               ingredients: self.Kitchen.ingredients, data : data};
     return recipe;
   };

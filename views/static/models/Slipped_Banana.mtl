@@ -1,0 +1,12 @@
+# Blender MTL File: 'dish9f086cc055e33ba917e5435da3a19c7c.blend'
+# Material Count: 1
+
+newmtl material_0.004
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Slipped_Banana_color.jpg

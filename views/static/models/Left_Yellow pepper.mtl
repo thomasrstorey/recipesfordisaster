@@ -1,0 +1,22 @@
+# Blender MTL File: 'dishf3617e187955ecd8d3a5f35e7a775d70.blend'
+# Material Count: 2
+
+newmtl material_0.003
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Left_Yellow pepper_color.jpg
+
+newmtl material_0.007
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.409600 0.409600 0.409600
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Left_Yellow pepper_color.jpg
