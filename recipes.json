@@ -1,5 +1,6 @@
 [
   {
+    "title" : "Pushed_Yellow_pepper_with_Yellow_pepper",
     "ingredients": [
       {
         "type": "plants",
@@ -52,12 +53,13 @@
     ],
     "steps": "Parboil the zucchini and yellow pepper with a lobster pick, and a zester into a rotisserie. Bake the zucchini and zucchini into a sauté pan. With a cheesecloth, and an oven glove, push the avocado and yellow pepper into an energy regulator until warm. Using an egg poacher, and a pastry brush, drop the avocado and yellow pepper in a susceptor. Blend the avocado, yellow pepper, zucchini, and zucchini into a wet grinder. In a roasting rack, break and scatter the zucchini with an apple corer. Serve seared.",
     "images": [
-      "/images/Pushed Yellow pepper with Yellow pepper1.jpg",
-      "/images/Pushed Yellow pepper with Yellow pepper2.jpg",
-      "/images/Pushed Yellow pepper with Yellow pepper3.jpg"
+      "/images/Pushed_Yellow_pepper_with_Yellow_pepper1.jpg",
+      "/images/Pushed_Yellow_pepper_with_Yellow_pepper2.jpg",
+      "/images/Pushed_Yellow_pepper_with_Yellow_pepper3.jpg"
     ]
   },
   {
+    "title" : "Peeled_Carrot_with_Carrot",
     "ingredients": [
       {
         "type": "plants",
@@ -140,6 +142,7 @@
     ]
   },
   {
+    "title" : "Lowered_Banana",
     "ingredients": [
       {
         "type": "plants",
@@ -318,6 +321,7 @@
     ]
   },
   {
+    "title" : "Battered_Broccoli",
     "ingredients": [
       {
         "type": "plants",
@@ -496,6 +500,7 @@
     ]
   },
   {
+    "title" : "Twisted_Squash_with_Twisted_Squash",
     "ingredients": [
       {
         "type": "plants",
@@ -746,6 +751,7 @@
     ]
   },
   {
+    "title" : "Reduced_Avocado_with_Returned_Banana_and_Onion",
     "ingredients": [
       {
         "type": "plants",
@@ -1056,6 +1062,7 @@
     ]
   },
   {
+    "title" : "Trimmed_Avocado",
     "ingredients": [
       {
         "type": "plants",
@@ -1426,6 +1433,7 @@
     ]
   },
   {
+    "title" : "Smeared_Potato",
     "ingredients": [
       {
         "type": "plants",
@@ -1868,6 +1876,7 @@
     ]
   },
   {
+    "title" : "Put_Carrot",
     "ingredients": [
       {
         "type": "plants",
@@ -2478,6 +2487,7 @@
     ]
   },
   {
+    "title" : "Formed_Red_potato",
     "ingredients": [
       {
         "type": "plants",
@@ -3088,6 +3098,7 @@
     ]
   },
   {
+    "title" : "Grilled_Banana",
     "ingredients": [
       {
         "type": "plants",
@@ -3746,6 +3757,7 @@
     ]
   },
   {
+    "title" : "Battered_Potato_with_Battered_Potato",
     "ingredients": [
       {
         "type": "plants",
@@ -4452,6 +4464,7 @@
     ]
   },
   {
+    "title" : "Slipped_Banana",
     "ingredients": [
       {
         "type": "plants",
@@ -5218,6 +5231,7 @@
     ]
   },
   {
+    "title" : "Soaked_Carrot_with_Chopped_Broccoli",
     "ingredients": [
       {
         "type": "plants",
@@ -6080,6 +6094,7 @@
     ]
   },
   {
+    "title" : "Dropped_Onion",
     "ingredients": [
       {
         "type": "plants",

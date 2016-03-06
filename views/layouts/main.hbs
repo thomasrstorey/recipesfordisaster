@@ -3,10 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Quick &amp; Easy Recipes for Disaster</title>
-    <link href="css/normalize.css" rel="stylesheet">
-    <link href="css/skeleton.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="http://localhost:8912/css/normalize.css" rel="stylesheet">
+    <link href="http://localhost:8912/css/skeleton.css" rel="stylesheet">
+    <link href="http://localhost:8912/css/site.css" rel="stylesheet">
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   </head>
   <body>
+    <div class="header section">
+      {{{renderHeaderNav @exphbs.view pages}}}
+    </div>
     {{{body}}}
+    {{> footer}}
   </body>
 </html>

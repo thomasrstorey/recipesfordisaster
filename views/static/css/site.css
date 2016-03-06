@@ -1,0 +1,126 @@
+/*
+* Copyleft 2016, Thomas R Storey
+* quick-and-easy.recipes
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 3/5/2016
+*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  color: #374140;
+  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0 0 400px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #2A2C2B;
+  font-family: "Permanent Marker", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+section {
+  width: 100%;
+}
+
+#highlight {
+  color: #DC3522;
+}
+
+.header {
+  background: #1E1E20;
+  padding: 20px 0px;
+}
+
+.header-logo h1 a{
+  text-decoration: none;
+  text-align:right;
+  color: #FFF;
+}
+
+.header-nav {
+  margin-top: 40px;
+}
+
+.nav-link a{
+  font-family: "Permanent Marker", cursive;
+  color: #374140;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.nav-link a:hover{
+  color: #D9CB9E;
+  border-bottom: 5px solid #D9CB9E;
+}
+
+.nav-link h3 {
+  text-align: center;
+}
+
+.column-header {
+  padding: 30px 0px;
+  border-bottom: 5px solid #1E1E20;
+}
+
+.recipe-entry:first {
+  margin-top: 0px;
+}
+
+.recipe-entry {
+  padding: 10px 10px 20px 10px;
+  box-shadow: 0px 0px 5px 0px rgba(42, 44, 43, 0.32);
+  margin-top: 40px;
+}
+
+.recipe-img {
+  max-width: 100%;
+}
+
+.footer {
+  background: #D9CB9E;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 300px;
+  width: 100%;
+}
+
+.field {
+  width: 100%;
+}
+
+#footer-content div h3 {
+  text-align: center;
+}
+
+#footer-content {
+  margin-top: 40px;
+}
+
+.button.button-primary,
+button.button-primary {
+  background-color: #DC3522;
+  border-color: #DC3522;
+}
+
+button.button-primary:hover {
+  background-color: #DC5644;
+  border-color: #DC5644;
+}
+
+.recipe-link {
+  text-decoration: none;
+}
+
+.body-text {
+  margin-top: 40px;
+}
+
+.recipe-text {
+  margin-top: 40px;
+  font-size: 1.5em;
+}

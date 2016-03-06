@@ -25,8 +25,12 @@ function Recipeater () {
     ingredients : []
   };
 
+  var limit = function (val, max){
+    return val > max ? max : val;
+  }
+
   self.generateIngredientsList = function () {
-    var numings = Math.ceil(_.sample(pd.rexp(150, 0.5)))+3;
+    var numings = limit(Math.ceil(_.sample(pd.rexp(150, 0.5)))+3, 8);
     for(var i = 0; i != numings; i++) {
       self.Kitchen.ingredients.push(getIngredient());
     }
@@ -34,7 +38,7 @@ function Recipeater () {
   };
 
   self.generateStepsList = function () {
-    var numsteps = Math.ceil(_.sample(pd.rexp(150, 0.5)))+3;
+    var numsteps = limit(Math.ceil(_.sample(pd.rexp(150, 0.5)))+3, 8);
     var steps = '';
     var data = [];
     for (var i = 0; i != numsteps; i++){
