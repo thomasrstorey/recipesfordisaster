@@ -24,7 +24,8 @@ module.exports = function(exphbs) {
   self.renderRecipesList = function (recipes) {
     var out = '<div id="recipes-list" class="row">';
     recipes.forEach(function(r){
-      out += '<a class="recipe-link" href="/recipes/'+r.title+'"><div class="recipe-entry">'
+      out += '<a class="recipe-link" href="/recipes/'+r.title+'">'
+         +'<div class="recipe-entry">'
          + '<img class="recipe-img" src="'+r.images[0]+'"/><div class='
          + '"recipe-text"><h3>'+r.title.replace(/\_/g, ' ') + '</h3>'
          + '</div></div></a>';
@@ -35,7 +36,8 @@ module.exports = function(exphbs) {
   self.renderIngredients = function (ings) {
     var out = '';
     ings.forEach(function(ing){
-      out+="<p>"+ing.quantity.num+" "+ing.quantity.unit.abb+" "+ing.name+"</p>";
+      out+="<p>"+ing.quantity.num+" "+ing.quantity.unit.abb+" "
+      +ing.name+"</p>";
     });
     return out;
   }

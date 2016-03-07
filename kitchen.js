@@ -145,9 +145,9 @@ module.exports = (function () {
   var clean = function (hash) {
     //delete dish blend
     fs.unlink('dish'+hash+'.blend', function(err){
-      if(err) console.err(err);
+      if(err) console.error(err);
       fs.unlink('dish'+hash+'.blend1', function(err){
-        if(err) console.err(err);
+        if(err) console.error(err);
       });
     });
   }

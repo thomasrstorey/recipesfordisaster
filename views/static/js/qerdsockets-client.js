@@ -18,8 +18,9 @@ socket.on('order', function(data){
   var rl = document.getElementById('recipes-list');
   var a = document.createElement("a");
   a.setAttribute("href", "/recipes/"+data.title);
+  a.className = "recipe-link"
   var entry = document.createElement("div");
-  entry.className = "recipe-entry";
+  entry.className = "recipe-entry pushDown";
   var img = document.createElement("img");
   img.setAttribute("src", data.images[0]);
   img.className = "recipe-img";

@@ -27,7 +27,7 @@ module.exports = function(app, hbs, io){
         ig.use({access_token: access_token});
         ig.add_user_subscription('http://quick-and-easy.recipes/instagram',
         function(err, result, remaining, limit){
-          if(err) console.err(err);
+          if(err) console.error(err);
           console.dir(result);
         });
         res.send('You made it!!');
@@ -56,8 +56,9 @@ module.exports = function(app, hbs, io){
           console.error(err);
           res.json({error: true, message: err.message});
         }
-        //write recipe to file
-        writeRecipeToFile(recipe);
+        // write recipe to file
+        // broadcast update to sockets
+        io.emit('order', writeRecipeToFile(recipe));
         //send urls to app
         res.json(urls);
       });
@@ -111,7 +112,7 @@ module.exports = function(app, hbs, io){
         ig.user_media_recent('user_id',
         function(err, medias, pagination, remaining, limit) {
           if(err){
-            console.err(err);
+            console.error(err);
           } else {
             res.locals.medias = medias;
           }
@@ -126,13 +127,14 @@ module.exports = function(app, hbs, io){
   var writeRecipeToFile = function (recipe) {
     var recipes = JSON.parse(fs.readFileSync('recipes.json'));
     var imgp = '/images/';
-    recipes.push({title: recipe.title.replace(/ /g, '_'),ingredients: recipe.ingredients,
+    var formatted = {title: recipe.title.replace(/ /g, '_'),ingredients: recipe.ingredients,
               steps:recipe.steps, images:[
               imgp+recipe.title.replace(/ /g, '_')+'1.jpg',
               imgp+recipe.title.replace(/ /g, '_')+'2.jpg',
-              imgp+recipe.title.replace(/ /g, '_')+'3.jpg']});
+              imgp+recipe.title.replace(/ /g, '_')+'3.jpg']};
+    recipes.push(formatted);
     fs.writeFileSync('./recipes.json', JSON.stringify(recipes, null, 2));
-    //TODO: Trigger page update (sockets)
+    return formatted;
   };
 
   function getRecipes (start, num) {

@@ -1,6 +1,6 @@
 [
   {
-    "title" : "Pushed_Yellow_pepper_with_Yellow_pepper",
+    "title": "Pushed_Yellow_pepper_with_Yellow_pepper",
     "ingredients": [
       {
         "type": "plants",
@@ -59,7 +59,7 @@
     ]
   },
   {
-    "title" : "Peeled_Carrot_with_Carrot",
+    "title": "Peeled_Carrot_with_Carrot",
     "ingredients": [
       {
         "type": "plants",
@@ -142,7 +142,7 @@
     ]
   },
   {
-    "title" : "Lowered_Banana",
+    "title": "Lowered_Banana",
     "ingredients": [
       {
         "type": "plants",
@@ -321,7 +321,7 @@
     ]
   },
   {
-    "title" : "Battered_Broccoli",
+    "title": "Battered_Broccoli",
     "ingredients": [
       {
         "type": "plants",
@@ -500,7 +500,7 @@
     ]
   },
   {
-    "title" : "Twisted_Squash_with_Twisted_Squash",
+    "title": "Twisted_Squash_with_Twisted_Squash",
     "ingredients": [
       {
         "type": "plants",
@@ -751,7 +751,7 @@
     ]
   },
   {
-    "title" : "Reduced_Avocado_with_Returned_Banana_and_Onion",
+    "title": "Reduced_Avocado_with_Returned_Banana_and_Onion",
     "ingredients": [
       {
         "type": "plants",
@@ -1062,7 +1062,7 @@
     ]
   },
   {
-    "title" : "Trimmed_Avocado",
+    "title": "Trimmed_Avocado",
     "ingredients": [
       {
         "type": "plants",
@@ -1433,7 +1433,7 @@
     ]
   },
   {
-    "title" : "Smeared_Potato",
+    "title": "Smeared_Potato",
     "ingredients": [
       {
         "type": "plants",
@@ -1876,7 +1876,7 @@
     ]
   },
   {
-    "title" : "Put_Carrot",
+    "title": "Put_Carrot",
     "ingredients": [
       {
         "type": "plants",
@@ -2487,7 +2487,7 @@
     ]
   },
   {
-    "title" : "Formed_Red_potato",
+    "title": "Formed_Red_potato",
     "ingredients": [
       {
         "type": "plants",
@@ -3098,7 +3098,7 @@
     ]
   },
   {
-    "title" : "Grilled_Banana",
+    "title": "Grilled_Banana",
     "ingredients": [
       {
         "type": "plants",
@@ -3757,7 +3757,7 @@
     ]
   },
   {
-    "title" : "Battered_Potato_with_Battered_Potato",
+    "title": "Battered_Potato_with_Battered_Potato",
     "ingredients": [
       {
         "type": "plants",
@@ -4464,7 +4464,7 @@
     ]
   },
   {
-    "title" : "Slipped_Banana",
+    "title": "Slipped_Banana",
     "ingredients": [
       {
         "type": "plants",
@@ -5231,7 +5231,7 @@
     ]
   },
   {
-    "title" : "Soaked_Carrot_with_Chopped_Broccoli",
+    "title": "Soaked_Carrot_with_Chopped_Broccoli",
     "ingredients": [
       {
         "type": "plants",
@@ -6094,7 +6094,7 @@
     ]
   },
   {
-    "title" : "Dropped_Onion",
+    "title": "Dropped_Onion",
     "ingredients": [
       {
         "type": "plants",
@@ -6954,6 +6954,827 @@
       "/images/Dropped_Onion1.jpg",
       "/images/Dropped_Onion2.jpg",
       "/images/Dropped_Onion3.jpg"
+    ]
+  },
+  {
+    "title": "Toasted_Broccoli",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "fluid ounce",
+            "abb": "fl oz"
+          },
+          "num": 23
+        },
+        "state": "brown"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "milligram",
+            "abb": "mg"
+          },
+          "num": 9
+        },
+        "state": "kosher"
+      },
+      {
+        "type": "plants",
+        "name": "broccoli",
+        "quantity": {
+          "unit": {
+            "full": "inch",
+            "abb": "in"
+          },
+          "num": 4
+        },
+        "state": "large"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "milliliter",
+            "abb": "ml"
+          },
+          "num": 5
+        },
+        "state": "choice"
+      }
+    ],
+    "steps": "Form and break the zucchini with a food mill into a mess kit. Toast the zucchini, broccoli, and zucchini with a mated colander pot. In a comal, using a twine, fry the broccoli. With a nutcracker, mash the zucchini into a masonry oven. Using an egg piercer, saute the zucchini into a pressure cooker. Pickle the zucchini using a mortar and pestle into a kettle. In a tajine, dry and burn the zucchini. Serve saporific.",
+    "images": [
+      "/images/Toasted_Broccoli1.jpg",
+      "/images/Toasted_Broccoli2.jpg",
+      "/images/Toasted_Broccoli3.jpg"
+    ]
+  },
+  {
+    "title": "Diced_Potato_with_Potato_and_Red_potato",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "avocado",
+        "quantity": {
+          "unit": {
+            "full": "pint",
+            "abb": "pt"
+          },
+          "num": 9
+        },
+        "state": "generous portion"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 5
+        },
+        "state": "flavored"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 12
+        },
+        "state": "famy"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 23
+        },
+        "state": "heady"
+      }
+    ],
+    "steps": "Using a flour sifter, push and melt the red potato. Scatter the red potato, avocado, and zucchini with a pastry wheel in a convection microwave. With a melon baller, and a fish slice, sprinkle the zucchini and red potato in a brazier. Using a corkscrew, and a herb chopper, dice the potato into a wok. Serve dry.",
+    "images": [
+      "/images/Diced_Potato_with_Potato_and_Red_potato1.jpg",
+      "/images/Diced_Potato_with_Potato_and_Red_potato2.jpg",
+      "/images/Diced_Potato_with_Potato_and_Red_potato3.jpg"
+    ]
+  },
+  {
+    "title": "Carved_Zucchini_with_Zucchini_and_Yellow_pepper",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "avocado",
+        "quantity": {
+          "unit": {
+            "full": "pint",
+            "abb": "pt"
+          },
+          "num": 9
+        },
+        "state": "generous portion"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 5
+        },
+        "state": "flavored"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 12
+        },
+        "state": "famy"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 23
+        },
+        "state": "heady"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "inch",
+            "abb": "in"
+          },
+          "num": 22
+        },
+        "state": "satin"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "milliliter",
+            "abb": "ml"
+          },
+          "num": 5
+        },
+        "state": "ice-cold"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 1
+        },
+        "state": "char-broiled"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "kilogram",
+            "abb": "kg"
+          },
+          "num": 18
+        },
+        "state": "sec"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "meter",
+            "abb": "m"
+          },
+          "num": 2
+        },
+        "state": "sea salt"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "pound",
+            "abb": "lb"
+          },
+          "num": 2
+        },
+        "state": "seasoned"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "gill",
+            "abb": "gill"
+          },
+          "num": 4
+        },
+        "state": "sour"
+      }
+    ],
+    "steps": "Fillet the potato using a pastry brush, and a ladle. Using a salt shaker, brush the yellow pepper and yellow pepper. In a salamander broiler, fold the zucchini, yellow pepper, and potato using a chinois, and an egg slicer. In a self-cleaning oven, using a sieve, toss and carve the zucchini. Serve pickled.",
+    "images": [
+      "/images/Carved_Zucchini_with_Zucchini_and_Yellow_pepper1.jpg",
+      "/images/Carved_Zucchini_with_Zucchini_and_Yellow_pepper2.jpg",
+      "/images/Carved_Zucchini_with_Zucchini_and_Yellow_pepper3.jpg"
+    ]
+  },
+  {
+    "title": "Minced_Zucchini",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "avocado",
+        "quantity": {
+          "unit": {
+            "full": "pint",
+            "abb": "pt"
+          },
+          "num": 9
+        },
+        "state": "generous portion"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 5
+        },
+        "state": "flavored"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 12
+        },
+        "state": "famy"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 23
+        },
+        "state": "heady"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "inch",
+            "abb": "in"
+          },
+          "num": 22
+        },
+        "state": "satin"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "milliliter",
+            "abb": "ml"
+          },
+          "num": 5
+        },
+        "state": "ice-cold"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 1
+        },
+        "state": "char-broiled"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "kilogram",
+            "abb": "kg"
+          },
+          "num": 18
+        },
+        "state": "sec"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "meter",
+            "abb": "m"
+          },
+          "num": 2
+        },
+        "state": "sea salt"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "pound",
+            "abb": "lb"
+          },
+          "num": 2
+        },
+        "state": "seasoned"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "gill",
+            "abb": "gill"
+          },
+          "num": 4
+        },
+        "state": "sour"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "liter",
+            "abb": "l"
+          },
+          "num": 6
+        },
+        "state": "spongy"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "inch",
+            "abb": "in"
+          },
+          "num": 4
+        },
+        "state": "sugary"
+      },
+      {
+        "type": "plants",
+        "name": "banana",
+        "quantity": {
+          "unit": {
+            "full": "fluid ounce",
+            "abb": "fl oz"
+          },
+          "num": 4
+        },
+        "state": "scrumptious"
+      },
+      {
+        "type": "plants",
+        "name": "carrot",
+        "quantity": {
+          "unit": {
+            "full": "meter",
+            "abb": "m"
+          },
+          "num": 2
+        },
+        "state": "heart healthy"
+      }
+    ],
+    "steps": "With a mandoline, slice the potato and zucchini into a solar cooker. With a grater, and a pizza cutter, mince the zucchini and potato in a panini sandwich grill. In a kettle, fold the red potato in a barbecue, and slice, spread, roll out, and reduce the zucchini for 8-14 days. Toss and mound the zucchini and avocado with a garlic press, and a butter curler. Serve small.",
+    "images": [
+      "/images/Minced_Zucchini1.jpg",
+      "/images/Minced_Zucchini2.jpg",
+      "/images/Minced_Zucchini3.jpg"
+    ]
+  },
+  {
+    "title": "Grilled_Red_potato",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "avocado",
+        "quantity": {
+          "unit": {
+            "full": "pint",
+            "abb": "pt"
+          },
+          "num": 9
+        },
+        "state": "generous portion"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 5
+        },
+        "state": "flavored"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 12
+        },
+        "state": "famy"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 23
+        },
+        "state": "heady"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "inch",
+            "abb": "in"
+          },
+          "num": 22
+        },
+        "state": "satin"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "milliliter",
+            "abb": "ml"
+          },
+          "num": 5
+        },
+        "state": "ice-cold"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 1
+        },
+        "state": "char-broiled"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "kilogram",
+            "abb": "kg"
+          },
+          "num": 18
+        },
+        "state": "sec"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "meter",
+            "abb": "m"
+          },
+          "num": 2
+        },
+        "state": "sea salt"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "pound",
+            "abb": "lb"
+          },
+          "num": 2
+        },
+        "state": "seasoned"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "gill",
+            "abb": "gill"
+          },
+          "num": 4
+        },
+        "state": "sour"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "liter",
+            "abb": "l"
+          },
+          "num": 6
+        },
+        "state": "spongy"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "inch",
+            "abb": "in"
+          },
+          "num": 4
+        },
+        "state": "sugary"
+      },
+      {
+        "type": "plants",
+        "name": "banana",
+        "quantity": {
+          "unit": {
+            "full": "fluid ounce",
+            "abb": "fl oz"
+          },
+          "num": 4
+        },
+        "state": "scrumptious"
+      },
+      {
+        "type": "plants",
+        "name": "carrot",
+        "quantity": {
+          "unit": {
+            "full": "meter",
+            "abb": "m"
+          },
+          "num": 2
+        },
+        "state": "heart healthy"
+      },
+      {
+        "type": "plants",
+        "name": "onion",
+        "quantity": {
+          "unit": {
+            "full": "deciliter",
+            "abb": "dl"
+          },
+          "num": 1
+        },
+        "state": "caramelized"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 20
+        },
+        "state": "moist"
+      },
+      {
+        "type": "plants",
+        "name": "onion",
+        "quantity": {
+          "unit": {
+            "full": "milligram",
+            "abb": "mg"
+          },
+          "num": 2
+        },
+        "state": "spongy"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "meter",
+            "abb": "m"
+          },
+          "num": 4
+        },
+        "state": "aged"
+      },
+      {
+        "type": "plants",
+        "name": "broccoli",
+        "quantity": {
+          "unit": {
+            "full": "milliliter",
+            "abb": "ml"
+          },
+          "num": 15
+        },
+        "state": "dripping"
+      }
+    ],
+    "steps": "In a dutch oven, using a tamis, turn the red potato, zucchini, and avocado. In a salamander broiler, sweeten the avocado. In a tabun oven, with a scoop, and a pepper mill, slide the banana, zucchini, and potato. Grill and wrap the red potato with a melon baller, and a mortar and pestle. Using a chinois, adjust and carve the zucchini, avocado, and broccoli. Serve aromatic.",
+    "images": [
+      "/images/Grilled_Red_potato1.jpg",
+      "/images/Grilled_Red_potato2.jpg",
+      "/images/Grilled_Red_potato3.jpg"
+    ]
+  },
+  {
+    "title": "Folded_Banana",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "banana",
+        "quantity": {
+          "unit": {
+            "full": "deciliter",
+            "abb": "dl"
+          },
+          "num": 3
+        },
+        "state": "gingery"
+      },
+      {
+        "type": "plants",
+        "name": "potato",
+        "quantity": {
+          "unit": {
+            "full": "ounce",
+            "abb": "oz"
+          },
+          "num": 9
+        },
+        "state": "Honey"
+      },
+      {
+        "type": "plants",
+        "name": "banana",
+        "quantity": {
+          "unit": {
+            "full": "tablespoon",
+            "abb": "tbsp"
+          },
+          "num": 6
+        },
+        "state": "savorless"
+      },
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "centimeter",
+            "abb": "cm"
+          },
+          "num": 2
+        },
+        "state": "blunt"
+      }
+    ],
+    "steps": "In a reflector oven, reduce the potato and yellow pepper using a crab cracker, a blow torch, and a peel to 395° F. Using a mandoline, sweeten the banana in a fufu machine. Using a tongs, soak the banana, potato, and banana into a popcorn maker. In an energy regulator, with a corkscrew, fold the banana. Serve heaping.",
+    "images": [
+      "/images/Folded_Banana1.jpg",
+      "/images/Folded_Banana2.jpg",
+      "/images/Folded_Banana3.jpg"
+    ]
+  },
+  {
+    "title": "Pickled_Zucchini_with_Pressed_Zucchini",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "quart",
+            "abb": "qt"
+          },
+          "num": 27
+        },
+        "state": "yummy"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "milligram",
+            "abb": "mg"
+          },
+          "num": 3
+        },
+        "state": "tantalizing"
+      },
+      {
+        "type": "plants",
+        "name": "carrot",
+        "quantity": {
+          "unit": {
+            "full": "gill",
+            "abb": "gill"
+          },
+          "num": 3
+        },
+        "state": "fruity"
+      },
+      {
+        "type": "plants",
+        "name": "avocado",
+        "quantity": {
+          "unit": {
+            "full": "pound",
+            "abb": "lb"
+          },
+          "num": 2
+        },
+        "state": "smothered"
+      }
+    ],
+    "steps": "Using a potato masher, reduce and squeeze the avocado into a corn roaster. Using a roller docker, wrap the carrot in a wet grinder. In a set-n-forget cooker, pickle the avocado and zucchini. Using a mortar and pestle, and a peel, press the zucchini in a corn roaster. Reduce and divide the red potato with an oven glove, a scissors, and a measuring cup into a griddle for 17-21 femtoseconds. Serve thick.",
+    "images": [
+      "/images/Pickled_Zucchini_with_Pressed_Zucchini1.jpg",
+      "/images/Pickled_Zucchini_with_Pressed_Zucchini2.jpg",
+      "/images/Pickled_Zucchini_with_Pressed_Zucchini3.jpg"
     ]
   }
 ]

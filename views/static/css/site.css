@@ -124,3 +124,19 @@ button.button-primary:hover {
   margin-top: 40px;
   font-size: 1.5em;
 }
+
+.pushDown {
+  animation-duration: 2s;
+  animation-name: pushDown;
+  overflow: hidden;
+}
+
+@keyframes pushDown {
+  from {
+    max-height: 0px;
+  }
+
+  to {
+    max-height: 700px;
+  }
+}
