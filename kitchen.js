@@ -16,7 +16,7 @@
 
  */
 
-module.exports = (function () {
+module.exports = function (io) {
   const spawn = require('child_process').spawn;
   const fs = require('fs');
   const crypto = require('crypto');
@@ -27,24 +27,36 @@ module.exports = (function () {
     // delete them when the cooking process is over.
     var hash = crypto.createHash('md5').update(recipe.title).digest('hex');
     //execute each step - need to do recursively to ensure sequential
-    consumeSteps(recipe.data[0], hash, function(err){
+    consumeSteps(recipe.data, hash, function(err){
       if(err){
         return cb(err);
       } else {
-        //gather all the models together and shoot some photos
-        serve(hash, recipe.title, 'views/static/images/',
-        'views/static/models/', function (err, urls) {
-          clean(hash);
-          if(err) return cb(err);
-          return cb(null, urls);
-        });
+        // call the callback
+        var modelsURL = "http://quick-and-easy.recipes/models/";
+        cb(null, {
+          objURL: modelsURL+recipe.title.replace(/ /g, '_')+".obj",
+          mtlURL: modelsURL+recipe.title.replace(/ /g, '_')+".mtl",
+          texURL: modelsURL+recipe.title.replace(/ /g, '_')+"_color.jpg",
+          name: recipe.title }, function(cb){
+            // then gather all the models together and shoot some photos
+            serve(hash, recipe.title, 'views/static/images/',
+            'views/static/models/', function (err) {
+              if(err){
+                cb(err);
+              } else {
+                clean(hash);
+                cb(null);
+              }
+            });
+          });
       }
     }, true);
 
     function consumeSteps (steps, hash, cb, first) {
       if(steps.length > 0){
         var step = steps.shift();
-        consumeVerbs(step.ingredients, step.verbs, hash, function(err){
+        console.dir(step);
+        consumeVerbs(step[0].ingredients, step[0].verbs, hash, function(err){
           if(err) return cb(err);
           return consumeSteps(steps, hash, cb);
         }, first);
@@ -74,7 +86,9 @@ module.exports = (function () {
           args = args.concat(['-o', 'dish'+hash]);
         }
         console.log(args.join(' '));
-        var blender = spawn('blender', args); //XXX:make sure env var is set!!
+        var blender = spawn('blender', args, //XXX:make sure env var is set!!
+        {cwd: "/home/thomas/recipesfordisaster"});
+        // var blender = spawn('blender', args);
         blender.stdout.on('data', function(data){
           console.log(`kitchen: ${data}`);
         });
@@ -120,7 +134,9 @@ module.exports = (function () {
             'render_and_export.py', '--', '-t',
             title.replace(/ /g, '_'), '-ip', ipath, '-op', opath];
     console.log(args.join(' '));
-    var blender = spawn('blender', args); //XXX:make sure env var is set!!
+    var blender = spawn('blender', args,  //XXX:make sure env var is set!!
+    {cwd: "/home/thomas/recipesfordisaster"});
+    // var blender = spawn('blender', args);
     blender.stdout.on('data', function(data){
       console.log(`kitchen: ${data}`);
     });
@@ -130,11 +146,7 @@ module.exports = (function () {
     blender.on('close', function(code) {
       if(code < 1){
         var modelsURL = "http://quick-and-easy.recipes/models/"
-        return cb(null, {
-          objURL: modelsURL+title.replace(/ /g, '_')+".obj",
-          mtlURL: modelsURL+title.replace(/ /g, '_')+".mtl",
-          texURL: modelsURL+title.replace(/ /g, '_')+"_color.jpg",
-          name: title });
+        return cb(null);
       } else {
         console.log("kitchen exploded!!");
         return cb(new Error(`blender exited with exit code ${code}`));
@@ -153,4 +165,4 @@ module.exports = (function () {
   }
 
   return self;
-})();
+};

@@ -4,9 +4,55 @@
     <h2 class="column-header">
       Recipes
     </h2>
-    <div id="recipes-list" class="eight offset-by-two columns body-text">
+    <div class="eight offset-by-two columns body-text">
       {{{renderRecipesList recipes}}}
     </div>
   </div>
   </div>
 </section>
+<script type="text/javascript">
+var more = true;
+var load = false;
+window.addEventListener('scroll', function(e) {
+  if(more && !load){
+      if(window.scrollY + window.innerHeight > document.body.offsetHeight - 100){
+        console.log("request");
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", pushToList);
+        var start = document.getElementById('recipes-list').childNodes.length - 1;
+        oReq.open("GET", "http://quick-and-easy.recipes/more?num=10&start="+start);
+        oReq.send();
+        load = true;
+      }
+  }
+});
+
+function pushToList (data) {
+  data = JSON.parse(data.target.responseText);
+  console.dir(data);
+  more = data.more;
+  load = false;
+  var recipes = data.recipes;
+  if(recipes !== undefined){
+    var recdiv = document.getElementById('recipes-list');
+    recipes.forEach(function(recipe){
+      var a = document.createElement("a");
+      a.setAttribute("href", "/recipes/"+recipe.title);
+      var entry = document.createElement("div");
+      entry.className = "recipe-entry";
+      var img = document.createElement("img");
+      img.setAttribute("src", recipe.images[0]);
+      img.className = "recipe-img";
+      var text = document.createElement("div");
+      text.className = "recipe-text";
+      var h3 = document.createElement("h3");
+      h3.innerHTML = recipe.title.replace(/\_/g, ' ');
+      text.appendChild(h3);
+      entry.appendChild(img);
+      entry.appendChild(text);
+      a.appendChild(entry);
+      recdiv.appendChild(a);
+    });
+  }
+}
+</script>

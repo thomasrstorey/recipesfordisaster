@@ -22,6 +22,8 @@ module.exports = function(exphbs) {
   };
 
   self.renderRecipesList = function (recipes) {
+    if(recipes === undefined) return '';
+    recipes = recipes.recipes;
     var out = '<div id="recipes-list" class="row">';
     recipes.forEach(function(r){
       out += '<a class="recipe-link" href="/recipes/'+r.title+'">'
@@ -34,12 +36,24 @@ module.exports = function(exphbs) {
   };
 
   self.renderIngredients = function (ings) {
+    if(ings === undefined) return '';
     var out = '';
     ings.forEach(function(ing){
       out+="<p>"+ing.quantity.num+" "+ing.quantity.unit.abb+" "
       +ing.name+"</p>";
     });
     return out;
+  }
+
+  self.renderInstagram = function (media) {
+    if(media === undefined) return '';
+    var out = '<div id="instagram" class="row">';
+    media.forEach(function(m){
+      out+='<a class="instagram-link" href="'+m.link+'" id="'+m.id+'">'
+        + '<img class="instagram-img" src="'+m.images.low_resolution.url+'"/>'
+        + '</a>'
+    });
+    return out + '</div>';
   }
 
   return self;

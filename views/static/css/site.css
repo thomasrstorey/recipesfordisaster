@@ -93,7 +93,8 @@ section {
   width: 100%;
 }
 
-#footer-content div h3 {
+#footer-content div p {
+  margin-top: 100px;
   text-align: center;
 }
 
@@ -129,6 +130,10 @@ button.button-primary:hover {
   animation-duration: 2s;
   animation-name: pushDown;
   overflow: hidden;
+}
+
+.instagram-img {
+  max-width: 100%;
 }
 
 @keyframes pushDown {

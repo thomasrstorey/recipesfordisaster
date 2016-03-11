@@ -1,0 +1,22 @@
+# Blender MTL File: 'dish38ad2a358c9eed3d041fdc06dd1c6e38.blend'
+# Material Count: 2
+
+newmtl material_fixNs 0.000000Ka 0.000000 0.000000 0.000000Kd 0.800000 0.800000 0.800000Ks 0.000000 0.000000 0.000000Ni 1.000000d 1.000000illum 1map_Kd fix_color.jpgnewmtl material_0.006
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Deboned_Bok_choy_undefined_color.jpg
+
+newmtl material_0.007
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.409600 0.409600 0.409600
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Deboned_Bok_choy_undefined_color.jpg

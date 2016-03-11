@@ -7776,5 +7776,183 @@
       "/images/Pickled_Zucchini_with_Pressed_Zucchini2.jpg",
       "/images/Pickled_Zucchini_with_Pressed_Zucchini3.jpg"
     ]
+  },
+  {
+    "title": "Deboned_Bok_choy_undefined",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "yellow pepper",
+        "quantity": {
+          "unit": {
+            "full": "gallon",
+            "abb": "gal"
+          },
+          "num": 1
+        },
+        "state": "lemon."
+      },
+      {
+        "type": "plants",
+        "name": "cauliflower",
+        "quantity": {
+          "unit": {
+            "full": "milligram",
+            "abb": "mg"
+          },
+          "num": 11
+        },
+        "state": "cold"
+      },
+      {
+        "type": "plants",
+        "name": "bok choy",
+        "quantity": {
+          "unit": {
+            "full": "inch",
+            "abb": "in"
+          },
+          "num": 5
+        },
+        "state": "classic"
+      },
+      {
+        "type": "plants",
+        "name": "portobello mushroom",
+        "quantity": {
+          "unit": {
+            "full": "deciliter",
+            "abb": "dl"
+          },
+          "num": 5
+        },
+        "state": "copious"
+      },
+      {
+        "type": "plants",
+        "name": "rice",
+        "quantity": {
+          "unit": {
+            "full": "centimeter",
+            "abb": "cm"
+          },
+          "num": 7
+        },
+        "state": "piquant"
+      },
+      {
+        "type": "plants",
+        "name": "onion",
+        "quantity": {
+          "unit": {
+            "full": "liter",
+            "abb": "l"
+          },
+          "num": 4
+        },
+        "state": "dazzling"
+      }
+    ],
+    "steps": "In a shichirin, with a cleaver, and an apple corer, chop the portobello mushroom and yellow pepper. Using a grapefruit knife, replace, macerate, and poach the portobello mushroom into a sabbath mode. In a tabun oven, with a pastry wheel, debone and puree the bok choy. Rub the rice and bok choy into a solar cooker. Using an apple corer, a mandoline, and a biscuit cutter, divide and push the cauliflower in an air fryer for 4-9 picoseconds. Serve treat.",
+    "images": [
+      "/images/Deboned_Bok_choy_undefined1.jpg",
+      "/images/Deboned_Bok_choy_undefined2.jpg",
+      "/images/Deboned_Bok_choy_undefined3.jpg"
+    ]
+  },
+  {
+    "title": "Mashed_Artichoke_with_Turned_Zucchini_undefined",
+    "ingredients": [
+      {
+        "type": "plants",
+        "name": "pear",
+        "quantity": {
+          "unit": {
+            "full": "millimeter",
+            "abb": "mm"
+          },
+          "num": 17
+        },
+        "state": "mashed"
+      },
+      {
+        "type": "plants",
+        "name": "cauliflower",
+        "quantity": {
+          "unit": {
+            "full": "milliliter",
+            "abb": "ml"
+          },
+          "num": 24
+        },
+        "state": "acerbic"
+      },
+      {
+        "type": "plants",
+        "name": "bok choy",
+        "quantity": {
+          "unit": {
+            "full": "meter",
+            "abb": "m"
+          },
+          "num": 4
+        },
+        "state": "sharp"
+      },
+      {
+        "type": "plants",
+        "name": "red potato",
+        "quantity": {
+          "unit": {
+            "full": "centimeter",
+            "abb": "cm"
+          },
+          "num": 8
+        },
+        "state": "boiled"
+      },
+      {
+        "type": "plants",
+        "name": "artichoke",
+        "quantity": {
+          "unit": {
+            "full": "ounce",
+            "abb": "oz"
+          },
+          "num": 1
+        },
+        "state": "gourmet"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "liter",
+            "abb": "l"
+          },
+          "num": 4
+        },
+        "state": "smothered"
+      },
+      {
+        "type": "plants",
+        "name": "zucchini",
+        "quantity": {
+          "unit": {
+            "full": "pound",
+            "abb": "lb"
+          },
+          "num": 18
+        },
+        "state": "natural"
+      }
+    ],
+    "steps": "Turn the zucchini with a bottle opener into a bread machine. In a chip pan, glaze the zucchini using a cheesecloth, a garlic press, and a nutmeg grater. Saute and sprinkle the zucchini using a nutcracker. Using a rolling pin, and a nutmeg grater, mash the cauliflower, zucchini, and artichoke into a convection oven. In a sauté pan, push, brown, and stuff the bok choy and cauliflower using a mated colander pot. Serve elastic.",
+    "images": [
+      "/images/Mashed_Artichoke_with_Turned_Zucchini_undefined1.jpg",
+      "/images/Mashed_Artichoke_with_Turned_Zucchini_undefined2.jpg",
+      "/images/Mashed_Artichoke_with_Turned_Zucchini_undefined3.jpg"
+    ]
   }
 ]

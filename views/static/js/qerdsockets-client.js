@@ -1,18 +1,41 @@
 var socket = io();
 
-socket.on('instagram', function(media){
-  var igdiv = document.getElementById('instagram');
-  media.data.forEach(function(datum){
-    var a = document.createElement("a");
-    a.setAttribute("href", datum.link);
-    a.className = "instagram-link";
-    var img = document.createElement("img");
-    img.setAttribute("src", datum.images.low_resolution.url);
-    img.className = "instagram-img";
-    a.appendChild(img);
-    igdiv.insertBefore(a, igdiv.firstChild);
-  });
+socket.on('instagram', function(data){
+  updateFeed(data);
 });
+
+function updateFeed (data) {
+    var data = JSON.parse(data).data;
+    var ids = [];
+    // get current feed
+    var feed = document.getElementsByClassName("instagram-link");
+    for (var i = 0; i != feed.length; i++){
+      ids.push(feed[i].getAttribute("id"));
+    }
+    // compare to incoming data
+    data.forEach(function(media){
+      var exists = false;
+      ids.forEach(function(id){
+        if(id === media.id) exists = true;
+      });
+      if(!exists){
+        pushToFeed(media);
+      }
+    });
+}
+
+function pushToFeed (datum) {
+  var igdiv = document.getElementById('instagram');
+  var a = document.createElement("a");
+  a.setAttribute("href", datum.link);
+  a.setAttribute("id", datum.id);
+  a.className = "instagram-link";
+  var img = document.createElement("img");
+  img.setAttribute("src", datum.images.low_resolution.url);
+  img.className = "instagram-img";
+  a.appendChild(img);
+  igdiv.insertBefore(a, igdiv.firstChild);
+}
 
 socket.on('order', function(data){
   var rl = document.getElementById('recipes-list');

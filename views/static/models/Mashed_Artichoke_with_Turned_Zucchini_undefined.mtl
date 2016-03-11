@@ -1,0 +1,42 @@
+# Blender MTL File: 'dish56e2d97bfbb0062f25540c40021a8e5b.blend'
+# Material Count: 4
+
+newmtl material_fixNs 0.000000Ka 0.000000 0.000000 0.000000Kd 0.800000 0.800000 0.800000Ks 0.000000 0.000000 0.000000Ni 1.000000d 1.000000illum 1map_Kd fix_color.jpgnewmtl Material.001
+Ns 90.196078
+Ka 0.000000 0.000000 0.000000
+Kd 0.409600 0.409600 0.409600
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Mashed_Artichoke_with_Turned_Zucchini_undefined_color.jpg
+
+newmtl material_0.001
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Mashed_Artichoke_with_Turned_Zucchini_undefined_color.jpg
+
+newmtl material_0.004
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Mashed_Artichoke_with_Turned_Zucchini_undefined_color.jpg
+
+newmtl material_0_bok_choy_color
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Mashed_Artichoke_with_Turned_Zucchini_undefined_color.jpg

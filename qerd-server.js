@@ -16,7 +16,7 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.use(express.static('views/static'));
 
-require('./sockets.js')(app, io);
+require('./sockets.js')(app, http, io);
 
 require('./routes.js')(app, hbs, io);
 

@@ -4,35 +4,20 @@ a list of verbs used in recipes
 sources: Julia Child.
 */
 module.exports = [
-    { present : "add", past : "added"}, //x
-    { present : "adjust", past : "adjusted"}, //x
-    { present : "arrange", past : "arranged"}, //x
-    { present : "discard", past : "discarded"}, //x
-    { present : "lower", past : "lowered"}, //x
-    { present : "place", past : "placed"}, //x
     { present : "pour", past : "poured"}, //x
-    { present : "put", past : "put"}, //x
-    { present : "remove", past : "removed"}, //x
     { present : "roll out", past : "rolled out"}, //x
     { present : "scoop", past : "scooped"}, //x
-    { present : "set", past : "set"}, //x
     { present : "spoon", past : "spooned"}, //x
     { present : "spread", past : "spread"}, //x
     { present : "sprinkle", past : "sprinkled"}, //x
     { present : "divide", past : "divided"}, //x
     { present : "drape", past : "draped"}, //x
     { present : "drop", past : "dropped"}, //x
-    { present : "follow", past : "followed"}, //x
-    { present : "insert", past : "inserted"}, //x
-    { present : "lay", past : "layed"}, //x
-    { present : "leave", past : "left"}, //x
     { present : "lift", past : "lifted"}, //x
-    { present : "pack", past : "packed"}, //x
     { present : "press", past : "pressed"}, //x
     { present : "pull", past : "pulled"}, //x
     { present : "push", past : "pushed"}, //x
     { present : "replace", past : "replaced"}, //x
-    { present : "return", past : "returned"}, //x
     { present : "separate", past : "separated"}, //x
     { present : "slide", past : "slid"}, //x
     { present : "slip", past : "slipped"}, //x
@@ -69,7 +54,6 @@ module.exports = [
     { present : "fillet", past : "filleted"},
     { present : "flour", past : "floured"}, //x
     { present : "fold", past : "folded"}, //x
-    { present : "freeze", past : "frozen"},//x
     { present : "fry", past : "fried"}, //x
     { present : "glaze", past : "glazed"}, //x
     { present : "grate", past : "grated"}, //x
@@ -113,7 +97,6 @@ module.exports = [
     { present : "crumple", past : "crumpled"}, //x
     { present : "dry", past : "dried"}, //x
     { present : "form", past : "formed"}, //x
-    { present : "moisten", past : "moistened"},
     { present : "mound", past : "mounded"},//x
     { present : "open", past : "opened"},//x
     { present : "pierce", past : "pierced"},//x

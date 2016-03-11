@@ -30,7 +30,8 @@ function Recipeater () {
   }
 
   self.generateIngredientsList = function () {
-    var numings = limit(Math.ceil(_.sample(pd.rexp(150, 0.5)))+3, 8);
+    self.Kitchen.ingredients = [];
+    var numings = Math.ceil(Math.random()*6)+1;
     for(var i = 0; i != numings; i++) {
       self.Kitchen.ingredients.push(getIngredient());
     }

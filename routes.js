@@ -1,64 +1,90 @@
 module.exports = function(app, hbs, io){
 
+  var https = require('https');
   var recipeater = require("./recipeaterbot/lib/recipeaterbot.js");
-  var kitchen = require("./kitchen.js");
+  var kitchen = require("./kitchen.js")(io);
   var fs = require('fs');
   var ig = require('instagram-node').instagram();
   var secrets = require('./secrets.js');
 
   // Instagram Shit ===========================================================
 
+  var interval;
   ig.use(secrets);
   var redirect_uri = 'http://quick-and-easy.recipes/handleauth';
   var access_token = '';
 
   // This is where you would initially send users to authorize
   app.get('/authorize_user', function(req, res) {
-    res.redirect( ig.get_authorization_url(redirect_uri) );
+    if(access_token.length <= 0){
+      ig.use(secrets);
+      res.redirect( ig.get_authorization_url(redirect_uri) );
+    }
   });
+
   // This is your redirect URI
   app.get('/handleauth', function(req, res) {
     ig.authorize_user(req.query.code, redirect_uri, function(err, result) {
       if (err) {
-        console.log(err.body);
+        console.error(err);
         res.send("Didn't work");
       } else {
         access_token = result.access_token;
-        ig.use({access_token: access_token});
-        ig.add_user_subscription('http://quick-and-easy.recipes/instagram',
-        function(err, result, remaining, limit){
-          if(err) console.error(err);
-          console.dir(result);
-        });
+        interval = setInterval(getFeed, 30000, access_token);
+        console.log(access_token);
         res.send('You made it!!');
       }
     });
   });
 
-  app.get('/instagram', function (req, res){
-    res.send(req.query['hub.challenge']);
-  });
-
-
-  app.post('/instagram', function (req, res){
-    console.dir(req.body);
-    // io.emit sub data
-  });
+  var getFeed = function (at) {
+    if(at.length > 0){
+      var body = '';
+      https.get(
+        'https://api.instagram.com/v1/users/self/media/recent/?access_token='
+        +at, function (res) {
+          console.log("FEED STATUS: " + res.statusCode);
+          res.resume();
+          res.on('data', function (chunk){
+            if(chunk.length) body+=chunk;
+          });
+          res.on('error', function (err) {
+            console.error(err);
+            cb(err, null);
+          })
+          res.on('end', function () {
+            body = body.slice(0); // XXX: REMOVE 'UNDEFINED' AT BEGINNING
+            io.emit('instagram', body);
+          });
+        });
+    }
+  };
 
   // EntreAR App API ==========================================================
 
   app.get('/api/order', function (req, res) {
+      // get decide text
+      var d = req.query.d;
       //generate recipe
       var recipe = recipeater.generateRecipe();
+      recipe.title += " " + d;
       //feed recipe to python/blender
-      kitchen.execute(recipe, function(err, urls){
+      kitchen.execute(recipe, function(err, urls, serve){
         if(err){
           console.error(err);
           res.json({error: true, message: err.message});
         }
         // write recipe to file
         // broadcast update to sockets
-        io.emit('order', writeRecipeToFile(recipe));
+        (function(recipe){
+          serve(function(err){
+            if(err){
+              console.error(err)
+            } else {
+              io.emit('order', writeRecipeToFile(recipe));
+            }
+          });
+        })(recipe);
         //send urls to app
         res.json(urls);
       });
@@ -66,20 +92,12 @@ module.exports = function(app, hbs, io){
 
   // AJAX =====================================================================
 
-  app.post('/contact', function (req, res){
-    // send me an email
-    // send response
-  });
-
-  app.post('/signup', function (req, res){
-    // add email address to email list
-    // send introductory email
-    //send response
-  });
-
   app.get('/more', function (req, res){
     // get next ten recipes
     // return their JSON data
+    var start = req.query.start;
+    var num = req.query.num;
+    res.json(getRecipes(start, num));
   });
 
   // GET pages ================================================================
@@ -98,28 +116,40 @@ module.exports = function(app, hbs, io){
     res.render('recipe', data);
   });
 
-  app.get('/*', exposeTemplates, function (req, res) {
-    page = req.path.replace(/\//g, '');
-    page = page.length ? "pages/"+page : 'home';
-    if(page === 'home'){
-      res.locals.recipes = getRecipes(0, 5);
-    } else if (page === 'pages/recipes') {
-      console.log("RECIPES!");
-      res.locals.recipes = getRecipes(0, 10);
-    }
-    if(page === 'home' || page === 'community'){
-      if(access_token.length > 0){
-        ig.user_media_recent('user_id',
-        function(err, medias, pagination, remaining, limit) {
-          if(err){
-            console.error(err);
-          } else {
-            res.locals.medias = medias;
-          }
-        });
+  app.get('/*', exposeTemplates, function (req, res, next) {
+    console.log("PATH: " + req.path);
+    if(req.path.match(/\.\w+$/) !== null){
+      next();
+    } else {
+      page = req.path.replace(/\//g, '');
+      page = page.length ? "pages/"+page : 'home';
+      if(page === 'home'){
+        res.locals.recipes = getRecipes(0, 5);
+      } else if (page === 'pages/recipes') {
+        console.log("RECIPES!");
+        res.locals.recipes = getRecipes(0, 10);
+      }
+      if(page === 'home'){
+        if(access_token.length > 0){
+          ig.use({access_token: access_token});
+          ig.user_self_media_recent(function(err, medias, pagination, remaining, limit) {
+            if(err){
+              console.error(err);
+            } else {
+              res.locals.medias = medias;
+              res.locals.access_token = access_token;
+              res.render(page);
+            }
+          });
+        } else {
+          res.render(page);
+        }
+      } else {
+        res.render(page);
       }
     }
-    res.render(page);
+
+
   });
 
   // Utilities ================================================================
@@ -140,10 +170,14 @@ module.exports = function(app, hbs, io){
   function getRecipes (start, num) {
     var recipes = JSON.parse(fs.readFileSync('recipes.json', 'utf8'));
     var out = [];
-    for(var i = recipes.length-(start+1); i > recipes.length-(start+1)-num; i--){
-      out.push(recipes[i]);
+    for(var i = recipes.length-1-start; i > recipes.length-1-start-num; i--){
+      if(recipes[i] !== undefined) out.push(recipes[i]);
     }
-    return out;
+    var more = false;
+    if(out.length == num){
+      more = true;
+    }
+    return {more: more, recipes : out};
   };
 
   function exposeTemplates (req, res, next) {

@@ -92,9 +92,6 @@ def export(scn, obj, img, title, opath):
             tex_slot = mat_slot.material.texture_slots[0]
             tex_slot.uv_layer = "bakeUV"
             tex_slot.texture.image = img
-    # duplicate a material to get around the obj rendering limitation in
-    # ARToolkit...
-    obj.data.materials.append(obj.material_slots[0].material)
 
     # export baked image
     for area in bpy.context.screen.areas :
@@ -106,7 +103,33 @@ def export(scn, obj, img, title, opath):
     img.filepath = opath+img.name+".jpg"
     img.source = "FILE"
     # export obj and mtl
-    bpy.ops.export_scene.obj(filepath=opath+title+".obj",check_existing=False)
+    obj.scale = (3000, 3000, 3000)
+    bpy.ops.export_scene.obj(filepath=opath+title+".obj",check_existing=False, axis_up="Z", axis_forward="Y")
+    obj.scale = (1, 1, 1)
+    fixMaterials(opath+title+".mtl")
+
+def fixMaterials(path):
+    mat = ("newmtl material_fix",
+    "Ns 0.000000",
+    "Ka 0.000000 0.000000 0.000000",
+    "Kd 0.800000 0.800000 0.800000",
+    "Ks 0.000000 0.000000 0.000000",
+    "Ni 1.000000",
+    "d 1.000000",
+    "illum 1"
+    "map_Kd fix_color.jpg",
+    "")
+
+    f = open(path, "r")
+    content = f.readlines()
+    f.close()
+    for line in reversed(mat):
+        content.insert(3, line)
+
+    f = open(path, "w")
+    content = "".join(content)
+    f.write(content)
+    f.close()
 
 def createRenderCam(obj):
     cam = bpy.data.cameras.new("cam")
@@ -161,11 +184,13 @@ def createPlate(obj):
 
     black.inputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
 
+    return plate;
+
 def render(scn, obj, title, ipath):
     cwd = os.getcwd()
     # setup ibl
     scn.render.engine = 'CYCLES'
-    scn.cycles.samples = 200
+    scn.cycles.samples = 100
     # convert object materials to cycles materials...
     for mat_slot in obj.material_slots:
         if mat_slot != None:
@@ -199,7 +224,7 @@ def render(scn, obj, title, ipath):
     links.new(gen.outputs[0], mapping.inputs[0])
 
     #setup plate
-    createPlate(obj)
+    plate = createPlate(obj)
 
     # create cameras
     cam_ob = createRenderCam(obj)
@@ -212,15 +237,17 @@ def render(scn, obj, title, ipath):
         fp = ipath+title+str(fn)
         scn.render.filepath = fp
         bpy.ops.render.render(write_still=True)
-        cam_ob.location = ((random.random()-0.5)*(2*fn),
-                    (random.random()-0.5)*(2*fn),
-                    (random.random())*8)
+        cam_ob.location = ((random.random()-0.5)*(1.5*fn),
+                    (random.random()-0.5)*(1.5*fn),
+                    (random.random())*6)
 
 def execute(title, ipath, opath):
     ctx = bpy.context
     scn = ctx.scene
     joinScene(scn, title)
     obj = bpy.data.objects.get(title)
+    if(obj == None):
+        exit(1)
     uvUnwrap(scn, obj)
     img = bakeTexture(scn, obj, title)
     export(scn, obj, img, title, opath)
